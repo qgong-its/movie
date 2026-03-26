@@ -16,10 +16,10 @@ This project demonstrates how to work with:
 
 The goal of this project is to build a simple multi-page movie app with two main views:
 
-- **Homepage**  
+- **Homepage**
   Fetch and display popular movies from the **TMDB API**
 
-- **Journal Page**  
+- **Journal Page**
   Show the user’s favourite movies stored in `localStorage`, including personal notes
 
 The app should be styled **only with TailwindCSS** and structured with **ES Modules** for clean separation of concerns.
@@ -29,6 +29,7 @@ The app should be styled **only with TailwindCSS** and structured with **ES Modu
 ## 2. Functional Requirements
 
 ### Shared requirements
+
 - Group project
 - Public GitHub repository
 - Work with Pull Requests
@@ -40,6 +41,7 @@ The app should be styled **only with TailwindCSS** and structured with **ES Modu
 - Style the app with **TailwindCSS only**
 
 ### Movie-specific requirements
+
 - Two pages:
   - `index.html` ↔ `main.js`
   - `journal.html` ↔ `journal.js`
@@ -93,7 +95,9 @@ The app is split into small modules so that each file has **one clear responsibi
 ### Module responsibilities
 
 #### `storage.js`
+
 Handles all `localStorage` operations, for example:
+
 - get favourites
 - save favourites
 - add movie to favourites
@@ -101,27 +105,35 @@ Handles all `localStorage` operations, for example:
 - update note for a movie
 
 #### `network.js`
+
 Handles all API communication, for example:
+
 - fetch popular movies
 - search movies by query
 - handle request errors
 
 #### `ui.js`
+
 Handles all DOM-related tasks, for example:
+
 - create movie cards
 - render lists of movies
 - update empty states
 - connect button events to actions
 
 #### `main.js`
+
 Controls homepage logic:
+
 - load popular movies on page load
 - handle search form submission
 - show results in dialog
 - connect UI with storage actions
 
 #### `journal.js`
+
 Controls journal page logic:
+
 - load favourite movies from `localStorage`
 - render saved entries
 - allow note editing
@@ -160,6 +172,7 @@ Controls journal page logic:
 ## 7. Data Flow
 
 ### Homepage flow
+
 ```text
 Page loads
    ↓
@@ -177,6 +190,7 @@ storage.js updates localStorage
 ```
 
 ### Search flow
+
 ```text
 User submits search form
    ↓
@@ -190,6 +204,7 @@ ui.js shows result / feedback in dialog
 ```
 
 ### Journal flow
+
 ```text
 User opens journal.html
    ↓
@@ -224,6 +239,7 @@ A possible structure for favourites:
 ```
 
 This structure makes it easy to:
+
 - render saved movies later
 - attach notes to the same object
 - avoid managing separate arrays for notes
@@ -233,12 +249,14 @@ This structure makes it easy to:
 ## 9. Example Responsibilities by Page
 
 ### `index.html` / `main.js`
+
 - show homepage layout
 - display popular movies
 - search movies
 - add to favourites
 
 ### `journal.html` / `journal.js`
+
 - display saved favourites
 - edit notes
 - optionally remove entries
@@ -248,6 +266,7 @@ This structure makes it easy to:
 ## 10. Suggested UI Sections
 
 ### Homepage
+
 - Navbar
 - Hero / intro section
 - Search form
@@ -255,6 +274,7 @@ This structure makes it easy to:
 - Dialog for search result / feedback
 
 ### Journal page
+
 - Navbar
 - Page title
 - Saved favourites grid or list
@@ -266,30 +286,37 @@ This structure makes it easy to:
 ## 11. Suggested Development Plan
 
 ### Step 1 — Setup
+
 - create file structure
 - connect TailwindCSS CDN
 - connect scripts with `type="module"`
 
 ### Step 2 — Network
+
 - fetch popular movies
 - test API response in console
 
 ### Step 3 — UI Rendering
+
 - build movie card function
 - render fetched movies on homepage
 
 ### Step 4 — Storage
+
 - implement add/get/save favourites
 - test `localStorage`
 
 ### Step 5 — Journal
+
 - render saved favourites on second page
 - add note persistence
 
 ### Step 6 — Search
+
 - implement search form + dialog feedback
 
 ### Step 7 — Polish
+
 - improve spacing, layout, empty states, and error messages
 
 ---
@@ -310,6 +337,7 @@ fix/search-error-handling
 ```
 
 Suggested PR workflow:
+
 1. Create a feature branch
 2. Work on one small task
 3. Open a Pull Request
@@ -331,11 +359,19 @@ To keep the code easy to explain during presentation:
   - `addToFavourites()`
   - `updateMovieNote()`
 
+### 13.1 Naming Conventions
+
+- **Variables** & **Functions**: Use **camelCase** (e.g., userProfile, getMovieData).
+- **Constants**: Use **UPPER_SNAKE_CASE** (e.g., API_KEY, MAX_RESULTS).
+- **Function Names**: Start with a **verb** to describe the action (e.g., renderList, fetchData, handleClick).
+- **Classes**: Use **PascalCase** (e.g., MovieController).
+
 ---
 
 ## 14. Stretch Ideas
 
 Optional improvements:
+
 - prevent duplicate favourites
 - add remove button
 - show saved count in navbar
@@ -386,6 +422,7 @@ The architecture is simple but already follows real frontend engineering ideas:
 - **page-level controllers**
 
 That makes the project easier to:
+
 - build in a team
 - review with Pull Requests
 - present to instructors
