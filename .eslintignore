@@ -1,0 +1,23 @@
+# Dependency directories
+node_modules/
+
+# Build output directories
+build/
+dist/
+
+# Test coverage reports
+coverage/
+
+# Configuration files
+.eslintrc.js
+eslint.config.js
+*.config.js
+
+# Minified JS files
+*.min.js
+
+# Markdown files
+*.md
+
+# Environment variables
+.env*
