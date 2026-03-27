@@ -1,1 +1,1 @@
-console.log("journal.js loaded");
+console.log('journal.js loaded');

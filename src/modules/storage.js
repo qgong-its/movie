@@ -12,7 +12,6 @@ export function getFromLocalStorage(storageKey) {
   }
 }
 
-// Todo quantity
 export function saveToLocalStorage(storageKey, dataArray) {
   localStorage.setItem(storageKey, JSON.stringify(dataArray));
 }
