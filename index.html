@@ -4,9 +4,55 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Movie Diary</title>
+    <script type="module" src="./src/main.js" defer></script>
   </head>
-  <body>
-    <div id="app"></div>
-    <script type="module" src="/src/main.js"></script>
+  <body class="min-h-screen flex flex-col bg-slate-950 text-white">
+    <header class="border-b border-slate-800">
+      <nav
+        class="mx-auto flex max-w-6xl items-center justify-between px-6 py-4"
+      >
+        <h1 class="text-xl font-bold">Movie Diary</h1>
+        <div class="flex gap-4">
+          <a href="./index.html" class="hover:text-yellow-400">Home</a>
+          <a href="./journal.html" class="hover:text-yellow-400">Journal</a>
+        </div>
+      </nav>
+    </header>
+
+    <main class="mx-auto w-full max-w-6xl flex-1 px-6 py-10">
+      <section>
+        <h2 class="text-3xl font-semibold">Homepage</h2>
+        <p class="mt-3 text-slate-300">Search Bar will be shown here later.</p>
+      </section>
+      <section class="mx-auto max-w-7xl px-6 pb-16">
+        <div class="flex items-center gap-2 mb-8">
+          <span class="text-lg">🔥</span>
+          <h2 class="text-2xl font-semibold text-white">Popular Movies</h2>
+        </div>
+        <div
+          id="card-container"
+          class="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5"
+        >
+          <!-- movie cards will be populated here, example: -->
+        </div>
+      </section>
+      <!-- page nav will be populated here, example:
+      <nav class="main-nav">
+        <ul id="pagination-container">
+            <li>
+              <button class="prev-btn">prev page</button>
+
+              <button class="next-btn">next-page</button>
+            </li>
+        </ul>
+      </nav>
+-->
+    </main>
+
+    <footer
+      class="border-t border-slate-800 px-6 py-4 text-center text-sm text-slate-400"
+    >
+      Movie Diary Project
+    </footer>
   </body>
 </html>
