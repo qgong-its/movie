@@ -60,8 +60,9 @@ The app should be styled **only with TailwindCSS** and structured with **ES Modu
 ## 3. Tech Stack
 
 - **HTML5**
-- **TailwindCSS (CDN)**
+- **TailwindCSS v4 (via Vite plugin)**
 - **JavaScript (ES Modules)**
+- **Vite (Build tool & Dev server)**
 - **TMDB API**
 - **localStorage**
 
@@ -74,13 +75,17 @@ project-root/
 │
 ├── index.html                # Homepage
 ├── journal.html              # Journal page
-├── main.js                   # Homepage entry point
-├── journal.js                # Journal page entry point
 │
-├── modules/
-│   ├── storage.js            # localStorage logic
-│   ├── network.js            # API requests
-│   └── ui.js                 # DOM rendering functions
+├── src
+│   ├── modules/
+│   │    ├── storage.js            # localStorage logic
+│   │    ├── network.js            # API requests
+│   │    └── ui.js                 # DOM rendering functions
+│   │
+│   ├── main.js                    # Homepage entry point
+│   ├── journal.js                 # Journal page entry point
+│   │
+│   └── style.css                  # import teilwind css
 │
 └── assets/
     └── optional/             # images/icons if needed
@@ -288,7 +293,7 @@ This structure makes it easy to:
 ### Step 1 — Setup
 
 - create file structure
-- connect TailwindCSS CDN
+- connect TailwindCSS
 - connect scripts with `type="module"`
 
 ### Step 2 — Network
@@ -366,6 +371,24 @@ To keep the code easy to explain during presentation:
 - **Function Names**: Start with a **verb** to describe the action (e.g., renderList, fetchData, handleClick).
 - **Classes**: Use **PascalCase** (e.g., MovieController).
 
+### 13.2 Code Quality & Formating
+
+To keep the code clean and consistent across the team, we use ESLint and Prettier.
+
+- **Auto-format code**: Before committing, please run the formatter to ensure consistent styling:
+
+```Bash
+npm run format
+
+```
+
+- **Linting**: Check for code errors or stylistic issues:
+
+```Bash
+npm run lint
+
+```
+
 ---
 
 ## 14. Stretch Ideas
@@ -381,24 +404,34 @@ Optional improvements:
 
 ---
 
-## 15. TailwindCSS Setup
+## 15. Quick Start & Installation
 
-Add this to `index.html` and `journal.html`:
+1. Clone the repository
 
-```html
-<script src="https://cdn.tailwindcss.com"></script>
+```Bash
+git clone git@github.com:qgong-its/movie.git
+cd movie
 ```
 
-Use module scripts:
+2. Install dependencies
 
-```html
-<script type="module" src="./main.js"></script>
+```Bash
+# Since we are using Vite and Tailwind v4, you must install the necessary packages first:
+npm install
 ```
 
-and
+3. Start the development server
 
-```html
-<script type="module" src="./journal.js"></script>
+```Bash
+# The app will be available at http://localhost:5173
+npm run dev
+```
+
+4. Build for production
+
+```Bash
+# The app will be available at http://localhost:5173
+npm run build
 ```
 
 ---
@@ -427,3 +460,7 @@ That makes the project easier to:
 - review with Pull Requests
 - present to instructors
 - extend later
+
+```
+
+```
