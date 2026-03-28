@@ -11,7 +11,7 @@
       <nav
         class="mx-auto flex max-w-6xl items-center justify-between px-6 py-4"
       >
-        <h1 class="text-xl font-bold">Movie Diary</h1>
+        <h1 class="text-xl font-bold">Movie Diary (TMDB API)</h1>
         <div class="flex gap-4">
           <a href="./index.html" class="hover:text-yellow-400">Home</a>
           <a href="./journal.html" class="hover:text-yellow-400">Journal</a>
@@ -20,9 +20,32 @@
     </header>
 
     <main class="mx-auto w-full max-w-6xl flex-1 px-6 py-10">
-      <section>
-        <h2 class="text-3xl font-semibold">Homepage</h2>
-        <p class="mt-3 text-slate-300">Search Bar will be shown here later.</p>
+      <section
+        class="mb-12 rounded-2xl bg-[#1E293B] p-8 shadow-md border border-[#334155]"
+      >
+        <div class="mx-auto max-w-xl text-center">
+          <h2 class="text-3xl font-bold text-white">
+            Discover <span class="text-[#FACC15]">Movies</span>
+          </h2>
+          <p class="mt-2 text-sm text-slate-400">
+            Search and save your favorite movies
+          </p>
+
+          <form id="search-form" class="mt-6 flex gap-2">
+            <input
+              type="text"
+              id="search-input"
+              placeholder="Search movies..."
+              class="flex-1 rounded-lg border border-[#334155] bg-[#0F172A] px-4 py-2 text-white outline-none focus:border-[#FACC15]"
+            />
+            <button
+              type="submit"
+              class="rounded-lg bg-[#FACC15] px-6 py-2 font-bold text-[#0F172A] hover:bg-yellow-500 transition-colors"
+            >
+              Search
+            </button>
+          </form>
+        </div>
       </section>
       <section class="mx-auto max-w-7xl px-6 pb-16">
         <div class="flex items-center gap-2 mb-8">
@@ -46,7 +69,7 @@
             </li>
         </ul>
       </nav>
--->
+      -->
     </main>
 
     <footer
@@ -54,5 +77,29 @@
     >
       Movie Diary Project
     </footer>
+
+    <dialog
+      id="search-results-dialog"
+      class="backdrop:bg-slate-950/80 m-auto w-[min(1100px,95vw)] max-h-[calc(100dvh-2rem)] overflow-hidden rounded-2xl border border-slate-700 bg-[#0F172A] p-0 text-white shadow-2xl"
+    >
+      <div class="flex max-h-[calc(100dvh-2rem)] w-full flex-col">
+        <div
+          class="flex items-center justify-between border-b border-slate-800 px-6 py-4"
+        >
+          <h3 class="text-xl font-bold text-[#FACC15]">Search Results</h3>
+          <button
+            id="close-dialog"
+            class="flex h-10 w-10 items-center justify-center rounded-lg text-slate-400 transition hover:bg-slate-800 hover:text-white"
+          >
+            <span class="text-2xl">✕</span>
+          </button>
+        </div>
+
+        <div
+          id="search-results-container"
+          class="grid w-full flex-1 grid-cols-[repeat(auto-fit,minmax(220px,1fr))] items-start gap-6 overflow-y-auto p-6"
+        ></div>
+      </div>
+    </dialog>
   </body>
 </html>
