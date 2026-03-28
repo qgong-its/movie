@@ -16,7 +16,7 @@ async function init() {
     console.log('failed to fetch movies: ', error);
   }
 
-  addRemoveBtn('card-container', ({ type, movieId }) => {
+  function handleFavouriteAction({ type, movieId }) {
     const favourite = getFromLocalStorage('favourite');
 
     if (type === 'add') {
@@ -31,7 +31,11 @@ async function init() {
         saveToLocalStorage('favourite', favourite);
       }
     }
-  });
+  }
+
+  addRemoveBtn('card-container', handleFavouriteAction);
+
+  addRemoveBtn('search-results-container', handleFavouriteAction);
 
   searchBtn('search-form', async (query) => {
     const container = document.getElementById('search-results-container');
