@@ -1,7 +1,7 @@
 import './style.css';
 
 import { fetchPopularMovies, searchMovies } from './modules/network.js';
-import { renderMovieCard, setupBtn } from './modules/ui.js';
+import { renderMovieCard, addRemoveBtn, searchBtn } from './modules/ui.js';
 import { getFromLocalStorage, saveToLocalStorage } from './modules/storage.js';
 
 async function init() {
@@ -16,7 +16,7 @@ async function init() {
     console.log('failed to fetch movies: ', error);
   }
 
-  setupBtn('card-container', ({ type, movieId }) => {
+  addRemoveBtn('card-container', ({ type, movieId }) => {
     const favourite = getFromLocalStorage('favourite');
 
     if (type === 'add') {
@@ -31,6 +31,25 @@ async function init() {
         saveToLocalStorage('favourite', favourite);
       }
     }
+  });
+
+  searchBtn('search-form', async (query) => {
+    const container = document.getElementById('search-results-container');
+    container.innerHTML = '';
+    const dialog = document.getElementById('search-results-dialog');
+    const movies = await searchMovies(query);
+    if (movies?.length > 0) {
+      // console.log(movies);
+      renderMovieCard(movies, 'search-results-container');
+    } else {
+      container.innerHTML = `
+        <p class="col-span-full text-center text-slate-400">
+          No movies found.
+        </p>
+      `;
+    }
+    dialog.showModal();
+    document.getElementById('close-dialog').onclick = () => dialog.close();
   });
 }
 

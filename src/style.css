@@ -1,1 +1,15 @@
 @import 'tailwindcss';
+
+.movie-card {
+  width: 100%;
+  max-width: none;
+  margin: 0;
+}
+
+dialog::backdrop {
+  background: rgba(15, 23, 42, 0.8);
+}
+
+#search-results-dialog[open] {
+  display: block;
+}
