@@ -10,7 +10,7 @@ coverage/
 
 # Configuration files
 .eslintrc.js
-eslint.config.js
+.eslint.config.js
 *.config.js
 
 # Minified JS files
