@@ -22,13 +22,7 @@ async function init() {
   }
 
   try {
-    const movies = await Promise.all(
-      favourite.map((id) => {
-        return fetchMovieById(id);
-      }),
-    );
-
-    renderMovieCard(movies, 'journal-container');
+    renderMovieCard(favourite, 'journal-container');
   } catch (error) {
     console.log('failed to fetch favourite movies', error);
   }
@@ -36,13 +30,14 @@ async function init() {
 
 addRemoveBtn('journal-container', ({ type, movieId }) => {
   if (type !== 'remove') return;
+
   const favourite = getFromLocalStorage('favourite');
 
-  const index = favourite.indexOf(movieId);
-  if (index !== -1) {
-    favourite.splice(index, 1);
-    saveToLocalStorage('favourite', favourite);
-  }
+  const updated = favourite.filter(
+    (item) => String(item.id) !== String(movieId),
+  );
+
+  saveToLocalStorage('favourite', updated);
 
   init();
 });
