@@ -36,3 +36,8 @@ export async function searchMovies(query) {
   );
   return movie.results;
 }
+
+export async function fetchMovieById(id) {
+  const movie = await request(`/movie/${id}`);
+  return movie;
+}
