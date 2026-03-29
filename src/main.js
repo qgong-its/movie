@@ -4,14 +4,13 @@ import { fetchPopularMovies, searchMovies } from './modules/network.js';
 import { renderMovieCard, addRemoveBtn, searchBtn } from './modules/ui.js';
 import { getFromLocalStorage, saveToLocalStorage } from './modules/storage.js';
 
+let fetchedMovies = [];
+
 async function init() {
   try {
     const movies = await fetchPopularMovies();
-    // console.log(movies);
+    fetchedMovies = movies;
     renderMovieCard(movies, 'card-container');
-    // const movie = await searchMovies('Project Hail Mary');
-    // console.log(movie);
-    // renderMovieCard(movie.results, 'movie-container');
   } catch (error) {
     console.log('failed to fetch movies: ', error);
   }
@@ -21,15 +20,35 @@ async function init() {
 
     if (type === 'add') {
       if (!favourite.includes(movieId)) {
-        favourite.unshift(movieId);
+        const movie = fetchedMovies.find(
+          (item) => String(item.id) === String(movieId),
+        );
+        if (!movie) return;
+
+        const existed = favourite.some(
+          (item) => String(item.id) === String(movieId),
+        );
+        if (existed) return;
+
+        const movieEntry = {
+          id: movie.id,
+          title: movie.title,
+          poster_path: movie.poster_path,
+          vote_average: movie.vote_average,
+          release_date: movie.release_date,
+          popularity: movie.popularity,
+          overview: movie.overview,
+          note: '',
+        };
+
+        favourite.unshift(movieEntry);
         saveToLocalStorage('favourite', favourite);
       }
     } else if (type === 'remove') {
-      const index = favourite.indexOf(movieId);
-      if (index !== -1) {
-        favourite.splice(index, 1);
-        saveToLocalStorage('favourite', favourite);
-      }
+      const updated = favourite.filter(
+        (item) => String(item.id) !== String(movieId),
+      );
+      saveToLocalStorage('favourite', updated);
     }
   }
 
