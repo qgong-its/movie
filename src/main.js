@@ -1,7 +1,7 @@
 import './style.css';
 
 import { fetchPopularMovies, searchMovies } from './modules/network.js';
-import { renderMovieCard, addRemoveBtn, searchBtn } from './modules/ui.js';
+import { renderMovieCard, setupBtn, searchBtn } from './modules/ui.js';
 import { getFromLocalStorage, saveToLocalStorage } from './modules/storage.js';
 
 let fetchedMovies = [];
@@ -52,9 +52,9 @@ async function init() {
     }
   }
 
-  addRemoveBtn('card-container', handleFavouriteAction);
+  setupBtn('card-container', handleFavouriteAction);
 
-  addRemoveBtn('search-results-container', handleFavouriteAction);
+  setupBtn('search-results-container', handleFavouriteAction);
 
   searchBtn('search-form', async (query) => {
     const container = document.getElementById('search-results-container');
