@@ -52,27 +52,43 @@
     </footer>
 
     <dialog
-      id="search-results-dialog"
-      class="backdrop:bg-slate-950/80 m-auto w-[min(1100px,95vw)] max-h-[calc(100dvh-2rem)] overflow-hidden rounded-2xl border border-slate-700 bg-[#0F172A] p-0 text-white shadow-2xl"
-    >
-      <div class="flex max-h-[calc(100dvh-2rem)] w-full flex-col">
-        <div
-          class="flex items-center justify-between border-b border-slate-800 px-6 py-4"
-        >
-          <h3 class="text-xl font-bold text-[#FACC15]">Search Results</h3>
-          <button
-            id="close-dialog"
-            class="flex h-10 w-10 items-center justify-center rounded-lg text-slate-400 transition hover:bg-slate-800 hover:text-white"
-          >
-            <span class="text-2xl">✕</span>
-          </button>
-        </div>
+        id="note-dialog"
+        class="m-auto w-[min(680px,92vw)] rounded-2xl border border-slate-700 bg-[#0F172A] p-0 text-white shadow-2xl"
+      >
+        <form method="dialog" class="flex flex-col gap-4 p-6">
+          <h2 id="note-dialog-title" class="text-xl font-bold text-[#FACC15]">
+            Add Note
+          </h2>
 
-        <div
-          id="search-results-container"
-          class="grid w-full flex-1 grid-cols-[repeat(auto-fit,minmax(220px,1fr))] items-start gap-6 overflow-y-auto p-6"
-        ></div>
-      </div>
-    </dialog>
+          <label for="note-input" class="text-sm text-slate-300"
+            >Your note</label
+          >
+
+          <textarea
+            id="note-input"
+            name="note"
+            rows="8"
+            placeholder="Write your note here..."
+            class="w-full rounded-xl border border-slate-700 bg-slate-900 px-4 py-3 text-sm text-white outline-none focus:border-[#FACC15]"
+          ></textarea>
+
+          <div class="flex justify-end gap-3">
+            <button
+              type="button"
+              id="note-cancel-btn"
+              class="rounded-lg border border-slate-600 px-4 py-2 text-sm font-semibold text-slate-200 transition hover:bg-slate-800"
+            >
+              Cancel
+            </button>
+            <button
+              type="button"
+              id="note-save-btn"
+              class="rounded-lg bg-[#FACC15] px-4 py-2 text-sm font-bold text-[#0F172A] transition hover:bg-yellow-500"
+            >
+              Save
+            </button>
+          </div>
+        </form>
+      </dialog>
   </body>
 </html>

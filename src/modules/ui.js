@@ -1,6 +1,6 @@
 const IMAGE_BASE = 'https://image.tmdb.org/t/p/w500';
 
-export function renderMovieCard(movies, containerId) {
+export function renderMovieCard(movies, containerId, options = '') {
   const container = document.getElementById(containerId);
 
   const movieCard = movies
@@ -27,8 +27,8 @@ export function renderMovieCard(movies, containerId) {
             <p class="mt-2 line-clamp-1 text-[11px] text-slate-400 italic">
               ${movie.overview || 'No info'}
             </p>
-            <button class="add-btn mt-3 w-full rounded-lg bg-[#FACC15] py-1.5 text-xs font-bold text-[#0F172A] transition hover:scale-[1.02] active:scale-95">
-              + Add
+            <button class="${options === 'journal' ? 'add-note-btn' : 'add-btn'} mt-3 w-full rounded-lg bg-[#FACC15] py-1.5 text-xs font-bold text-[#0F172A] transition hover:scale-[1.02] active:scale-95">
+              + Add ${options === 'journal' ? 'Note' : ''}
             </button>
           </div>
         </article>`,
@@ -44,19 +44,20 @@ export function buildImageUrl(path) {
   return IMAGE_BASE + path;
 }
 
-// containerId = 'card-container'
-export function addRemoveBtn(containerId, callback) {
+// containerId = 'card-container' | 'journal-container'
+export function setupBtn(containerId, callback) {
   const container = document.getElementById(containerId);
 
   container.addEventListener('click', (event) => {
     const card = event.target.closest('.movie-card');
     if (!card) return;
     const movieId = card.dataset.id;
-    // console.log(movieId);
     if (event.target.closest('.add-btn')) {
       callback({ type: 'add', movieId: movieId });
     } else if (event.target.closest('.remove-btn')) {
       callback({ type: 'remove', movieId: movieId });
+    } else if (event.target.closest('.add-note-btn')) {
+      callback({ type: 'note', movieId: movieId });
     }
   });
 }
@@ -65,13 +66,12 @@ export function addRemoveBtn(containerId, callback) {
 export function searchBtn(containerId, callback) {
   const form = document.getElementById(containerId);
   if (!form) return;
+
   form.addEventListener('submit', (event) => {
     event.preventDefault();
     const input = document.getElementById('search-input');
-    // console.log(input);
     if (input) {
       const query = input.value.trim();
-      // console.log(query);
       callback(query);
     }
   });
